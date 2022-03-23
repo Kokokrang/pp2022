@@ -1,8 +1,8 @@
 #Build a student mark management system
 
-from this import d
 from prompt_toolkit import prompt
 from sympy import re
+from this import d, student_ID, student_list, course_ID, course_list
 
 def get_student_number():
     student_number = input("Enter student number: ")
