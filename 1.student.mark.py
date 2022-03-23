@@ -1,8 +1,5 @@
 #Build a student mark management system
-
-from prompt_toolkit import prompt
-from sympy import re
-from this import d, student_ID, student_list, course_ID, course_list
+from this import d, student_ID, course_ID, listStudents, listCourses, course_list
 
 def get_student_number():
     student_number = input("Enter student number: ")
@@ -42,8 +39,9 @@ def listCourses():
     for course in course_list:
         print(f"Course ID: {course[0]} Course name: {course[1]}")
 #list all students
+listStudents = []
 def listStudents():
-    for student in student_list:
+    for student in listStudents:
         print(f"Student ID: {student[0]} Student name: {student[1]} Student date of birth: {student[2]}")
 #driver
 def main():
@@ -57,7 +55,7 @@ def main():
         choice = int(input("Enter your choice: "))
         if choice == 1:
             student_name, student_ID, student_DoB = get_student_details()
-            student_list.append((student_ID, student_name, student_DoB))
+            listStudents.append((student_ID, student_name, student_DoB))
         elif choice == 2:
             course_name, course_ID = get_course_details()
             course_list.append((course_ID, course_name))
