@@ -20,7 +20,6 @@ def get_course_details():
     course_ID = input("Enter course ID: ")
     return course_name, course_ID
 #select a course, input marks for student in this course
-course_list = []
 def inputMarks():
     while True:
         course_ID = input("Enter course ID: ")
@@ -33,8 +32,9 @@ def inputMarks():
         d[course_ID].append((student_ID, marks))
     else:
         d[course_ID] = [(student_ID, marks)]
-        
+    print("Marks entered")
 #list all courses
+course_list = []
 def listCourses():
     for course in course_list:
         print(f"Course ID: {course[0]} Course name: {course[1]}")
