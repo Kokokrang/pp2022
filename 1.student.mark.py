@@ -1,5 +1,6 @@
 #Build a student mark management system
 
+from this import d
 from prompt_toolkit import prompt
 from sympy import re
 
