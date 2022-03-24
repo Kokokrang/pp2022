@@ -1,8 +1,6 @@
 #Build a student mark management system
 d = {}
-listCourses = []
-listStudents = []
-
+student_ID = []
 def get_student_number():
     student_number = input("Enter student number: ")
     return student_number
