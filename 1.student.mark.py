@@ -1,5 +1,7 @@
 #Build a student mark management system
-from this import d, student_ID, course_ID, listStudents, listCourses, course_list
+d = {}
+listCourses = []
+listStudents = []
 
 def get_student_number():
     student_number = input("Enter student number: ")
