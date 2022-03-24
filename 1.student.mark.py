@@ -24,7 +24,7 @@ def inputMarks():
     while True:
         course_ID = input("Enter course ID: ")
         if course_ID not in [course[0] for course in course_list]:
-            print("Bad course ID")
+            print("Invalid course ID")
             continue
         break
     marks = int(input("Enter marks: "))
