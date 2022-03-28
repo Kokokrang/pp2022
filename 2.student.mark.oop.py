@@ -1,4 +1,3 @@
-from itertools import count
 listMarks = []
 listStudents = []
 listCourses = []
@@ -22,26 +21,21 @@ def inputCourses():
     return courses
 #inheritance
 class person:
-    count = 0
-    def __init__(self, name, DoB):
+    def __init__(self, name, age):
         self.name = name
-        self.DoB = DoB
+        self.age = age
     def printDetails(self):
-        print(f"Name: {self.name} Date of birth: {self.DoB}")
+        print(f"Name: {self.name} Date of birth: {self.age}")
 @property
 def name(self):
     return self.name
-@classmethod
-def getCount(cls):
-    return cls.count
 class student(person):
-    def __init__(self, name, DoB, student_ID):
-        super().__init__(name, DoB)
+    def __init__(self, name, age, student_ID):
+        super().__init__(name, age)
         self.student_ID = student_ID
-        student.count += 1
-    def printDetails(self):
-        super().printDetails()
-        print(f"Student ID: {self.student_ID}")
+@classmethod
+def studentDetails(cls, name, age, student_ID):
+    return cls(name, age, student_ID)
 class course:
     def __init__(self, name, ID):
         self.name = name
@@ -55,48 +49,44 @@ class marks:
         self.marks = marks
     def printDetails(self):
         print(f"Student ID: {self.student_ID} Course ID: {self.course_ID} Marks: {self.marks}")
+#driver
 if __name__ == "__main__":
     students = inputStudents()
     courses = inputCourses()
-    #input student details
     for i in range(students):
-        name, DoB, student_ID = input("Enter student details: ").split()
-        listStudents.append(student(name, DoB, student_ID))
-    #input course details
+        student_name, student_ID, student_DoB = input("Enter student details: ")
+        listStudents.append((student_ID, student_name, student_DoB))
     for i in range(courses):
-        name, ID = input("Enter course details: ").split()
-        listCourses.append(course(name, ID))
-    #input marks for student in course
-    for i in range(students):
-        student_ID = listStudents[i].student_ID
-        for j in range(courses):
-            course_ID = listCourses[j].ID
+        course_name, course_ID = input("Enter course details: ")
+        listCourses.append((course_ID, course_name))
+    while True:
+        print("\n1. Enter marks for student in course")
+        print("2. List all courses")
+        print("3. List all students")
+        print("4. Exit")
+        choice = int(input("Enter your choice: "))
+        if choice == 1:
+            while True:
+                course_ID = input("Enter course ID: ")
+                if course_ID not in [course[0] for course in listCourses]:
+                    print("Invalid course ID")
+                    continue
+                break
             marks = int(input("Enter marks: "))
-            listMarks.append(marks(student_ID, course_ID, marks))
-    #list all courses
-    for i in range(courses):
-        listCourses[i].printDetails()
-    #list all students
-    for i in range(students):
-        listStudents[i].printDetails()
-    #list all marks
-    for i in range(students):
-        for j in range(courses):
-            listMarks[i*courses+j].printDetails()
-    #list all students in a course
-    for i in range(courses):
-        for j in range(students):
-            listMarks[j*courses+i].printDetails()
-    #list all courses of a student
-    for i in range(students):
-        for j in range(courses):
-            listMarks[i*courses+j].printDetails()
-    #list all students in a course
-    for i in range(courses):
-        for j in range(students):
-            listMarks[j*courses+i].printDetails()
-    #list all courses of a student
-    for i in range(students):
-        for j in range(courses):
-            listMarks[i*courses+j].printDetails()
-    #list all students in a course
+            listMarks.append((student_ID, course_ID, marks))
+        elif choice == 2:
+            for course in listCourses:
+                print(f"Course ID: {course[0]} Course name: {course[1]}")
+        elif choice == 3:
+            for student in listStudents:
+                print(f"Student ID: {student[0]} Student name: {student[1]} Student date of birth: {student[2]}")
+        elif choice == 4:
+            break
+        else:
+            print("Invalid choice")
+    for student in listStudents:
+        for course in listCourses:
+            for mark in listMarks:
+                if student[0] == mark[0] and course[0] == mark[1]:
+                    print(f"Student ID: {student[0]} Course ID: {course[0]} Marks: {mark[2]}")
+    print("\nEnd of program")
