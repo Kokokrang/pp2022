@@ -54,8 +54,8 @@ if __name__ == "__main__":
     students = inputStudents()
     courses = inputCourses()
     for i in range(students):
-        student_name, student_ID, student_DoB = input("Enter student details: ")
-        listStudents.append((student_ID, student_name, student_DoB))
+        student_name, student_ID, student_age = input("Enter student details: ")
+        listStudents.append((student_ID, student_name, student_age))
     for i in range(courses):
         course_name, course_ID = input("Enter course details: ")
         listCourses.append((course_ID, course_name))
