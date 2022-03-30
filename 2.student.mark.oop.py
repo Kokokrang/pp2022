@@ -1,64 +1,59 @@
+from sympy import re
+
+
 listMarks = []
 listStudents = []
 listCourses = []
 #input number of students
-def inputStudents():
-    while True:
-        students = int(input("Enter number of students: "))
-        if students < 1:
-            print("Invalid number of students")
-            continue
-        break
-    return students
-#input number of courses
-def inputCourses():
-    while True:
-        courses = int(input("Enter number of courses: "))
-        if courses < 1:
-            print("Invalid number of courses")
-            continue
-        break
-    return courses
-#inheritance
-class person:
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
-    def printDetails(self):
-        print(f"Name: {self.name} Date of birth: {self.age}")
-@property
-def name(self):
-    return self.name
-class student(person):
-    def __init__(self, name, age, student_ID):
-        super().__init__(name, age)
+def get_student_number():
+    student_number = int(input("Enter number of students: "))
+    return student_number
+class Student:
+    def __init__(self, student_ID, student_name, student_DoB):
         self.student_ID = student_ID
-@classmethod
-def studentDetails(cls, name, age, student_ID):
-    return cls(name, age, student_ID)
-class course:
-    def __init__(self, name, ID):
-        self.name = name
-        self.ID = ID
-    def printDetails(self):
-        print(f"Course ID: {self.ID} Course name: {self.name}")
-class marks:
-    def __init__(self, student_ID, course_ID, marks):
-        self.student_ID = student_ID
+        self.student_name = student_name
+        self.student_DoB = student_DoB
+    @classmethod
+    def student_details(cls):
+        student_name = input("Enter student name: ")
+        student_ID = input("Enter student ID: ")
+        student_DoB = input("Enter student date of birth: ")
+        return cls(student_ID, student_name, student_DoB)
+    def list_student(self):
+        print(f"Student ID: {self.student_ID} Student name: {self.student_name} Student date of birth: {self.student_DoB}")
+def get_course_number():
+    course_number = int(input("Enter number of courses: "))
+    return course_number
+class Course:
+    def __init__(self, course_ID, course_name):
         self.course_ID = course_ID
-        self.marks = marks
-    def printDetails(self):
-        print(f"Student ID: {self.student_ID} Course ID: {self.course_ID} Marks: {self.marks}")
+        self.course_name = course_name
+    @classmethod
+    def course_details(cls):
+        course_name = input("Enter course name: ")
+        course_ID = input("Enter course ID: ")
+        return cls(course_ID, course_name)
+    def list_courses(self):
+        print(f"Course ID: {self.course_ID} Course name: {self.course_name}")
+def get_marks():
+    while True:
+        course_ID = input("Enter course ID: ")
+        if course_ID not in [course[0] for course in listCourses]:
+            print("Invalid course ID")
+            continue
+        break
+    marks = int(input("Enter marks: "))
+    return course_ID, marks
 #driver
 if __name__ == "__main__":
-    students = inputStudents()
-    courses = inputCourses()
-    for i in range(students):
-        student_name, student_ID, student_age = input("Enter student details: ")
-        listStudents.append((student_ID, student_name, student_age))
-    for i in range(courses):
-        course_name, course_ID = input("Enter course details: ")
-        listCourses.append((course_ID, course_name))
+    student_number = get_student_number()
+    for i in range(student_number):
+        student = Student.student_details()
+        listStudents.append(student)
+    course_number = get_course_number()
+    for i in range(course_number):
+        course = Course.course_details()
+        listCourses.append(course)
     while True:
         print("\n1. Enter marks for student in course")
         print("2. List all courses")
@@ -66,27 +61,15 @@ if __name__ == "__main__":
         print("4. Exit")
         choice = int(input("Enter your choice: "))
         if choice == 1:
-            while True:
-                course_ID = input("Enter course ID: ")
-                if course_ID not in [course[0] for course in listCourses]:
-                    print("Invalid course ID")
-                    continue
-                break
-            marks = int(input("Enter marks: "))
-            listMarks.append((student_ID, course_ID, marks))
+            course_ID, marks = get_marks()
+            listMarks.append((course_ID, marks))
         elif choice == 2:
             for course in listCourses:
-                print(f"Course ID: {course[0]} Course name: {course[1]}")
+                course.list_courses()
         elif choice == 3:
             for student in listStudents:
-                print(f"Student ID: {student[0]} Student name: {student[1]} Student date of birth: {student[2]}")
+                student.list_student()
         elif choice == 4:
             break
         else:
             print("Invalid choice")
-    for student in listStudents:
-        for course in listCourses:
-            for mark in listMarks:
-                if student[0] == mark[0] and course[0] == mark[1]:
-                    print(f"Student ID: {student[0]} Course ID: {course[0]} Marks: {mark[2]}")
-    print("\nEnd of program")
