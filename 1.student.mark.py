@@ -1,8 +1,5 @@
 #Build a student mark management system
-import string
 
-
-d = []
 listMarks = []
 def get_student_number():
     student_number = input("Enter student number: ")
@@ -23,6 +20,7 @@ def get_course_details():
     course_ID = input("Enter course ID: ")
     return course_name, course_ID
 #select a course, input marks for student in this course
+d = []
 def inputMarks():
     while True:
         course_ID = input("Enter course ID: ")
@@ -43,10 +41,9 @@ def listCourses():
         print(f"Course ID: {course[0]} Course name: {course[1]}")
 #list all students
 student_list = []
-def student_list():
+def listStudents():
     for student in student_list:
         print(f"Student ID: {student[0]} Student name: {student[1]} Student date of birth: {student[2]}")
-#driver
 if __name__ == "__main__":
     while True:
         print("\n1. Enter student details")
@@ -58,6 +55,7 @@ if __name__ == "__main__":
         choice = int(input("Enter your choice: "))
         if choice == 1:
             student_name, student_ID, student_DoB = get_student_details()
+            student_list.append((student_ID, student_name, student_DoB))
         elif choice == 2:
             course_name, course_ID = get_course_details()
             course_list.append((course_ID, course_name))
