@@ -1,5 +1,3 @@
-from sympy import re
-
 
 listMarks = []
 listStudents = []
