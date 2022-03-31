@@ -31,6 +31,8 @@ class Course:
         course_name = input("Enter course name: ")
         course_ID = input("Enter course ID: ")
         return cls(course_ID, course_name)
+    def __getitem__(self, item):
+        return self.course_ID
     def list_courses(self):
         print(f"Course ID: {self.course_ID} Course name: {self.course_name}")
 def get_marks():
