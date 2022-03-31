@@ -44,6 +44,9 @@ def get_marks():
         break
     marks = int(input("Enter marks: "))
     return course_ID, marks
+def list_marks():
+    for course_ID, marks in listMarks:
+        print(f"Course ID: {course_ID} Marks: {marks}")
 #driver
 if __name__ == "__main__":
     student_number = get_student_number()
@@ -58,7 +61,8 @@ if __name__ == "__main__":
         print("\n1. Enter marks for student in course")
         print("2. List all courses")
         print("3. List all students")
-        print("4. Exit")
+        print("4. List all marks")
+        print("5. Exit")
         choice = int(input("Enter your choice: "))
         if choice == 1:
             course_ID, marks = get_marks()
@@ -70,6 +74,8 @@ if __name__ == "__main__":
             for student in listStudents:
                 student.list_student()
         elif choice == 4:
+            list_marks()
+        elif choice == 5:
             break
         else:
             print("Invalid choice")
