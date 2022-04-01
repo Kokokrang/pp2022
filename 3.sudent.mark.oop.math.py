@@ -1,6 +1,5 @@
-#Use math module to round-down student scores to 1-digit decimal upon input
 import math
-import numpy as np
+import numpy
 listMarks = []
 listStudents = []
 listCourses = []
@@ -33,6 +32,8 @@ class Course:
         course_name = input("Enter course name: ")
         course_ID = input("Enter course ID: ")
         return cls(course_ID, course_name)
+    def __getitem__(self, item):
+        return self.course_ID
     def list_courses(self):
         print(f"Course ID: {self.course_ID} Course name: {self.course_name}")
 def get_marks():
@@ -42,5 +43,41 @@ def get_marks():
             print("Invalid course ID")
             continue
         break
-    marks = int(input("Enter marks: "))
-    return course_ID, marks
+    marks = float(input("Enter marks: "))
+    marks_i = math.floor(marks)
+    return course_ID, marks_i
+def list_marks():
+    for course_ID, marks in listMarks:
+        print(f"Course ID: {course_ID} Marks: {marks}")
+#driver
+if __name__ == "__main__":
+    student_number = get_student_number()
+    for i in range(student_number):
+        student = Student.student_details()
+        listStudents.append(student)
+    course_number = get_course_number()
+    for i in range(course_number):
+        course = Course.course_details()
+        listCourses.append(course)
+    while True:
+        print("\n1. Enter marks for student in course")
+        print("2. List all courses")
+        print("3. List all students")
+        print("4. List all marks")
+        print("5. Exit")
+        choice = int(input("Enter your choice: "))
+        if choice == 1:
+            course_ID, marks = get_marks()
+            listMarks.append((course_ID, marks))
+        elif choice == 2:
+            for course in listCourses:
+                course.list_courses()
+        elif choice == 3:
+            for student in listStudents:
+                student.list_student()
+        elif choice == 4:
+            list_marks()
+        elif choice == 5:
+            break
+        else:
+            print("Invalid choice")
