@@ -1,3 +1,4 @@
+from decimal import ROUND_FLOOR
 import math
 import numpy
 listMarks = []
@@ -49,6 +50,13 @@ def get_marks():
 def list_marks():
     for course_ID, marks in listMarks:
         print(f"Course ID: {course_ID} Marks: {marks}")
+#average marks
+def average_marks():
+    for course_ID, marks in listMarks:
+        average_marks = numpy.mean([marks for course_ID, marks in listMarks if course_ID == course_ID])
+        print(f"Average marks: {average_marks}")
+#weighted sum of credits and marks
+
 #driver
 if __name__ == "__main__":
     student_number = get_student_number()
@@ -64,7 +72,8 @@ if __name__ == "__main__":
         print("2. List all courses")
         print("3. List all students")
         print("4. List all marks")
-        print("5. Exit")
+        print("5. Average marks")
+        print("10. Exit")
         choice = int(input("Enter your choice: "))
         if choice == 1:
             course_ID, marks = get_marks()
@@ -78,6 +87,8 @@ if __name__ == "__main__":
         elif choice == 4:
             list_marks()
         elif choice == 5:
+            average_marks()
+        elif choice == 10:
             break
         else:
             print("Invalid choice")
