@@ -5,6 +5,7 @@ listMarks = []
 listStudents = []
 listCourses = []
 list_credits = []
+
 #input number of students
 def get_student_number():
     student_number = int(input("Enter number of students: "))
@@ -53,6 +54,7 @@ def get_marks():
 def list_marks():
     for course_ID, marks in listMarks:
         print(f"Course ID: {course_ID} Marks: {marks}")
+        
 #sum(marks * credits) / sum(credits)
 def calculate_average():
     sum_credits = 0
@@ -65,6 +67,7 @@ def calculate_average():
     average = sum_marks / sum_credits
     average = numpy.round(average, 1)
     return average
+
 #Sort student list by GPA descending
 def sort_student_list():
     list_students = []
@@ -72,6 +75,7 @@ def sort_student_list():
         list_students.append(student.student_name)
     list_students.sort(reverse=True)
     return list_students
+
 #driver
 if __name__ == "__main__":
     student_number = get_student_number()
