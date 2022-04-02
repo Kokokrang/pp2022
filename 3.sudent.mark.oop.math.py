@@ -93,5 +93,5 @@ if __name__ == "__main__":
         if answer == "n":
             break
     list_marks()
-    average = calculate_average()
-    print(f"Average: {average}")
+    GPA = calculate_average()
+    print(f"Average: {GPA}")
