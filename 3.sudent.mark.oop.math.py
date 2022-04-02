@@ -94,4 +94,4 @@ if __name__ == "__main__":
             break
     list_marks()
     GPA = calculate_average()
-    print(f"Average: {GPA}")
+    print(f"GPA: {GPA}")
