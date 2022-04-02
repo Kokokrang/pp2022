@@ -48,8 +48,8 @@ def get_marks():
             continue
         break
     marks = float(input("Enter marks: "))
-    marks_i = math.floor(marks)
-    return course_ID, marks_i
+    marks = math.floor(marks)
+    return course_ID, marks
 def list_marks():
     for course_ID, marks in listMarks:
         print(f"Course ID: {course_ID} Marks: {marks}")
@@ -95,3 +95,5 @@ if __name__ == "__main__":
     list_marks()
     GPA = calculate_average()
     print(f"GPA: {GPA}")
+    list_students = sort_student_list()
+    print(f"Students: {list_students}")
