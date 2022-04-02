@@ -1,24 +1,27 @@
 #Build a student mark management system
-
 listMarks = []
 def get_student_number():
     student_number = input("Enter student number: ")
     return student_number
+
 #get student details
 def get_student_details():
     student_name = input("Enter student name: ")
     student_ID = input("Enter student ID: ")
     student_DoB = input("Enter student date of birth: ")
     return student_name, student_ID, student_DoB
+
 #get course number
 def get_course_number():
     course_number = input("Enter course number: ")
     return course_number
+
 #get course details
 def get_course_details():
     course_name = input("Enter course name: ")
     course_ID = input("Enter course ID: ")
     return course_name, course_ID
+
 #input marks for student in this course
 def input_marks():
     while True:
@@ -29,12 +32,14 @@ def input_marks():
         break
     marks = int(input("Enter marks: "))
     return course_ID, marks
+
 d = []
 #list all courses
 course_list = []
 def listCourses():
     for course in course_list:
         print(f"Course ID: {course[0]} Course name: {course[1]}")
+        
 #list all students
 student_list = []
 def listStudents():
