@@ -1,9 +1,10 @@
-from decimal import ROUND_FLOOR
+
 import math
 import numpy
 listMarks = []
 listStudents = []
 listCourses = []
+list_credits = []
 #input number of students
 def get_student_number():
     student_number = int(input("Enter number of students: "))
@@ -25,14 +26,16 @@ def get_course_number():
     course_number = int(input("Enter number of courses: "))
     return course_number
 class Course:
-    def __init__(self, course_ID, course_name):
+    def __init__(self, course_ID, course_name, credits):
         self.course_ID = course_ID
         self.course_name = course_name
+        self.credits = credits
     @classmethod
     def course_details(cls):
         course_name = input("Enter course name: ")
         course_ID = input("Enter course ID: ")
-        return cls(course_ID, course_name)
+        credits = int(input("Enter course credits: "))
+        return cls(course_ID, course_name, credits)
     def __getitem__(self, item):
         return self.course_ID
     def list_courses(self):
@@ -50,13 +53,25 @@ def get_marks():
 def list_marks():
     for course_ID, marks in listMarks:
         print(f"Course ID: {course_ID} Marks: {marks}")
-#average marks
-def average_marks():
+#sum(marks * credits) / sum(credits)
+def calculate_average():
+    sum_credits = 0
+    sum_marks = 0
     for course_ID, marks in listMarks:
-        average_marks = numpy.mean([marks for course_ID, marks in listMarks if course_ID == course_ID])
-        print(f"Average marks: {average_marks}")
-#weighted sum of credits and marks
-
+        for course in listCourses:
+            if course_ID == course[0]:
+                sum_credits += int(course[2])
+                sum_marks += marks * int(course[2])
+    average = sum_marks / sum_credits
+    average = numpy.round(average, 1)
+    return average
+#Sort student list by GPA descending
+def sort_student_list():
+    list_students = []
+    for student in listStudents:
+        list_students.append(student.student_name)
+    list_students.sort(reverse=True)
+    return list_students
 #driver
 if __name__ == "__main__":
     student_number = get_student_number()
@@ -68,27 +83,15 @@ if __name__ == "__main__":
         course = Course.course_details()
         listCourses.append(course)
     while True:
-        print("\n1. Enter marks for student in course")
-        print("2. List all courses")
-        print("3. List all students")
-        print("4. List all marks")
-        print("5. Average marks")
-        print("10. Exit")
-        choice = int(input("Enter your choice: "))
-        if choice == 1:
-            course_ID, marks = get_marks()
-            listMarks.append((course_ID, marks))
-        elif choice == 2:
-            for course in listCourses:
-                course.list_courses()
-        elif choice == 3:
-            for student in listStudents:
-                student.list_student()
-        elif choice == 4:
-            list_marks()
-        elif choice == 5:
-            average_marks()
-        elif choice == 10:
+        course_ID, marks = get_marks()
+        if course_ID not in [course[0] for course in listCourses]:
+            print("Invalid course ID")
+            continue
+        listMarks.append((course_ID, marks))
+        print("Do you want to add another mark? (y/n)")
+        answer = input()
+        if answer == "n":
             break
-        else:
-            print("Invalid choice")
+    list_marks()
+    average = calculate_average()
+    print(f"Average: {average}")
