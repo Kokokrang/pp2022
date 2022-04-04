@@ -49,7 +49,7 @@ def get_marks():
             continue
         break
     marks = float(input("Enter marks: "))
-    marks = round(marks, 1)
+    marks = math.round(marks, 1)
     return course_ID, marks
 def list_marks():
     for course_ID, marks in listMarks:
