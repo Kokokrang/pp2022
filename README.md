@@ -9,5 +9,5 @@ Students are expected to:
 Student Info
 =========================
 
-* Student Name: Nguyễn Tuấn Khải
+* Student Name: Nguyễn Tuấn Khải 
 * Student ID: Bi11-116
