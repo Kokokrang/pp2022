@@ -1,1 +1,1 @@
-Course ID	Course name	Credits
+Course ID: 01	Course name: Python	Credits: 4

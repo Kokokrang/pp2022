@@ -1,1 +1,1 @@
-Student ID	Student name	Student date of birth
+Student ID: Bi11-116	Student name: NTK	Student date of birth: 2001-26-12
