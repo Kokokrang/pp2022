@@ -75,3 +75,19 @@ def sort_student_list():
         list_students.append(student.student_name)
     list_students.sort(reverse=True)
     return list_students
+
+#Write student info to students.txt after finishing input
+f = open("students.txt", "w")
+f.write("Student ID\tStudent name\tStudent date of birth\n")
+f.close()
+
+#Write course info to courses.txt after finishing input
+f = open("courses.txt", "w")
+f.write("Course ID\tCourse name\tCredits\n")
+f.close()
+
+#Write marks to marks.txt after finishing input
+f = open("marks.txt", "w")
+f.write("Course ID\tMarks\n")
+f.close()
+
