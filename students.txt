@@ -1,0 +1,1 @@
+Student ID	Student name	Student date of birth
