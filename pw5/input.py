@@ -77,7 +77,7 @@ def sort_student_list():
     return list_students
 
 #Write student info to students.txt after finishing input
-f = open("students.txt", "w")
+f = open("students.txt", "w") # w will create a file if the specified file does not exist
 f.write("Student ID\tStudent name\tStudent date of birth\n")
 f.close()
 f = open("students.txt", "r")
