@@ -80,14 +80,19 @@ def sort_student_list():
 f = open("students.txt", "w")
 f.write("Student ID\tStudent name\tStudent date of birth\n")
 f.close()
+f = open("students.txt", "r")
+print(f.read())
 
 #Write course info to courses.txt after finishing input
 f = open("courses.txt", "w")
 f.write("Course ID\tCourse name\tCredits\n")
 f.close()
+f = open("courses.txt", "r")
+print(f.read())
 
 #Write marks to marks.txt after finishing input
 f = open("marks.txt", "w")
 f.write("Course ID\tMarks\n")
 f.close()
-
+f = open("marks.txt", "r")
+print(f.read())
